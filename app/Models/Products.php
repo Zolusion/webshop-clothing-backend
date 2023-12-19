@@ -14,10 +14,10 @@ class Products extends Model
         'productname',
         'description',
         'category',
-        'categroyid',
+        'categoryid',
         'oldprice',
         'newprice',
         'quantity',
-        'slug'
+        'slug',
     ];
 }

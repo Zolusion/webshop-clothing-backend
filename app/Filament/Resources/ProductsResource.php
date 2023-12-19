@@ -3,17 +3,14 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductsResource\Pages;
-use App\Filament\Resources\ProductsResource\RelationManagers;
 use App\Models\Products;
-use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\Column;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProductsResource extends Resource
 {
@@ -25,42 +22,15 @@ class ProductsResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('id')
-                    ->required()
-                    ->placeholder('ID'),
-                TextInput::make('imageUrl')
-                    ->required()
-                    ->placeholder('Image URL'),
-                TextInput::make('productName')
-                    ->required()
-                    ->placeholder('Product Name'),
-                TextInput::make('description')
-                    ->required()
-                    ->placeholder('Description'),
-                TextInput::make('category')
-                    ->required()
-                    ->placeholder('Category'),
-                TextInput::make('categoryId')
-                    ->required()
-                    ->placeholder('Category ID'),
-                TextInput::make('oldPrice')
-                    ->required()
-                    ->placeholder('Old Price'),
-                TextInput::make('newPrice')
-                    ->required()
-                    ->placeholder('New Price'),
-                TextInput::make('quantity')
-                    ->required()
-                    ->placeholder('Quantity'),
-                TextInput::make('slug')
-                    ->required()
-                    ->placeholder('Slug'),
-                TextInput::make('created_at')
-                    ->required()
-                    ->placeholder('Created At'),
-                TextInput::make('updated_at')
-                    ->required()
-                    ->placeholder('Updated At'),
+                TextInput::make('imageurl'),
+                TextInput::make('productname'),
+                TextInput::make('description'),
+                TextInput::make('category'),
+                TextInput::make('categoryid'),
+                TextInput::make('oldprice'),
+                TextInput::make('newprice'),
+                TextInput::make('quantity'),
+                TextInput::make('slug'),
             ]);
     }
 
@@ -68,20 +38,17 @@ class ProductsResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('imageUrl'),
-                TextColumn::make('productName'),
+                TextColumn::make('imageurl'),
+                TextColumn::make('productname'),
                 TextColumn::make('description'),
                 TextColumn::make('category'),
-                TextColumn::make('categoryId'),
-                TextColumn::make('oldPrice'),
-                TextColumn::make('newPrice'),
+                TextColumn::make('categoryid'),
+                TextColumn::make('oldprice'),
+                TextColumn::make('newprice'),
                 TextColumn::make('quantity'),
                 TextColumn::make('slug'),
-                TextColumn::make('created_at')
-                    ->dateTime(),
-                TextColumn::make('updated_at')
-                    ->dateTime(),
+                TextColumn::make('created_at')->dateTime(),
+                TextColumn::make('updated_at')->dateTime(),
             ])
             ->filters([
                 //

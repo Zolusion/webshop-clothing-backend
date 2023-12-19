@@ -3,17 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostsResource\Pages;
-use App\Filament\Resources\PostsResource\RelationManagers;
 use App\Models\Posts;
-use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PostsResource extends Resource
 {
@@ -25,20 +21,10 @@ class PostsResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('image')
-                    ->required()
-                    ->placeholder('Enter image url'),
-                TextInput::make('title')
-                    ->required()
-                    ->placeholder('Enter title'),
-                TextInput::make('description')
-                    ->required()
-                    ->placeholder('Enter description'),
-                TextInput::make('slug')
-                    ->required()
-                    ->unique(Posts::class, 'slug')
-                    ->placeholder('Enter slug'),
-                    
+                TextInput::make('post_image')->required()->placeholder('Enter image URL'),
+                TextInput::make('post_title')->required()->placeholder('Enter title'),
+                TextInput::make('post_content')->required()->placeholder('Enter description'),
+                TextInput::make('slug')->required(),
             ]);
     }
 
@@ -46,20 +32,11 @@ class PostsResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')
-                    ->sortable(),
-                TextColumn::make('image')
-                    ->sortable()
-                    ->searchable(),
-                TextColumn::make('title')
-                    ->sortable()
-                    ->searchable(),
-                TextColumn::make('description')
-                    ->sortable()
-                    ->searchable(),
-                TextColumn::make('slug')
-                    ->sortable()
-                    ->searchable(),
+                TextColumn::make('id')->sortable(),
+                TextColumn::make('post_image')->sortable()->searchable(),
+                TextColumn::make('post_title')->sortable()->searchable(),
+                TextColumn::make('post_content')->sortable()->searchable(),
+                TextColumn::make('slug')->sortable()->searchable(),
             ])
             ->filters([
                 //

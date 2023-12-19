@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('post_image');
             $table->string('post_title');
-            $table->text('post_content');
-            $table->string('slug');
+            $table->text('post_content'); 
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
