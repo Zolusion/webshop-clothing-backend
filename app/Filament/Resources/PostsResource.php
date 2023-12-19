@@ -2,11 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PostResource\Pages;
-use App\Filament\Resources\PostResource\RelationManagers;
-use App\Models\Post;
+use App\Filament\Resources\PostsResource\Pages;
+use App\Filament\Resources\PostsResource\RelationManagers;
+use App\Models\Posts;
 use Filament\Forms;
-use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,11 +14,10 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Facades\Date;
 
-class PostResource extends Resource
+class PostsResource extends Resource
 {
-    protected static ?string $model = Post::class;
+    protected static ?string $model = Posts::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -27,23 +25,20 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('id')->required()
-                    ->placeholder('ID'),
-                TextInput::make('image_url')
-                    ->placeholder('Image URL')
-                    ->required(),
+                TextInput::make('image')
+                    ->required()
+                    ->placeholder('Enter image url'),
                 TextInput::make('title')
                     ->required()
-                    ->placeholder('Title'),
+                    ->placeholder('Enter title'),
                 TextInput::make('description')
                     ->required()
-                    ->placeholder('Description'),
+                    ->placeholder('Enter description'),
                 TextInput::make('slug')
                     ->required()
-                    ->placeholder('Slug')
-                    ->afterStateUpdated(function (callable $set) {
-                        $set('slug', str($set('title'))->slug()->toString());
-                    }),
+                    ->unique(Posts::class, 'slug')
+                    ->placeholder('Enter slug'),
+                    
             ]);
     }
 
@@ -51,11 +46,20 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('image_url'),
-                TextColumn::make('title'),
-                TextColumn::make('description'),
-                TextColumn::make('slug'),
+                TextColumn::make('id')
+                    ->sortable(),
+                TextColumn::make('image')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('title')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('description')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('slug')
+                    ->sortable()
+                    ->searchable(),
             ])
             ->filters([
                 //
@@ -81,8 +85,8 @@ class PostResource extends Resource
     {
         return [
             'index' => Pages\ListPosts::route('/'),
-            'create' => Pages\CreatePost::route('/create'),
-            'edit' => Pages\EditPost::route('/{record}/edit'),
+            'create' => Pages\CreatePosts::route('/create'),
+            'edit' => Pages\EditPosts::route('/{record}/edit'),
         ];
     }
 }
