@@ -24,6 +24,7 @@ class PostsResource extends Resource
                 TextInput::make('post_image')->required()->placeholder('Enter image URL'),
                 TextInput::make('post_title')->required()->placeholder('Enter title'),
                 TextInput::make('post_content')->required()->placeholder('Enter description'),
+                TextInput::make('post_link')->required()->placeholder('Enter link'),
                 TextInput::make('slug')->required(),
             ]);
     }

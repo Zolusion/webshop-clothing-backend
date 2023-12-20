@@ -4,19 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-
-class ShoppingCart extends Model
+class Cart extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
-    protected $casts = [
+    protected $fillable = [
         'product_image',
         'product_name',
-        'product_price' => 'decimal:2',
+        'product_price',
         'quantity',
-        'deleted_at',
         'customer_name',
         'customer_email',
         'customer_phone',
@@ -26,7 +23,8 @@ class ShoppingCart extends Model
         'customer_zipcode',
         'shipping_method',
         'payment_method',
-        'shipping_cost' => 'decimal:2',
-        'totalprice' => 'decimal:2',
+        'shipping_cost',
+        'totalprice',
+        'order_status'
     ];
 }

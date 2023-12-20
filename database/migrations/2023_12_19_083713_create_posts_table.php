@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('post_image');
             $table->string('post_title');
             $table->text('post_content'); 
+            $table->string('post_link')->nullable();
             $table->string('slug')->unique();
             $table->timestamps();
         });
