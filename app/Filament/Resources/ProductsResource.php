@@ -22,15 +22,15 @@ class ProductsResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('imageurl'),
-                TextInput::make('productname'),
-                TextInput::make('description'),
-                TextInput::make('category'),
-                TextInput::make('categoryid'),
-                TextInput::make('oldprice'),
-                TextInput::make('newprice'),
-                TextInput::make('quantity'),
-                TextInput::make('slug'),
+                TextInput::make('imageurl')->required()->placeholder('https://via.placeholder.com/150'),
+                TextInput::make('productname')->required()->placeholder('Product Name'),
+                TextInput::make('description')->required()->placeholder('Product Description'),
+                TextInput::make('category')->required()->placeholder('Product Category'),
+                TextInput::make('categoryid')->required()->placeholder('Product Category ID'),
+                TextInput::make('oldprice')->required()->placeholder('Old Price'),
+                TextInput::make('newprice')->required()->placeholder('New Price'),
+                TextInput::make('quantity')->required()->placeholder('Quantity'),
+                TextInput::make('slug')->required()->placeholder('Slug'),
             ]);
     }
 

@@ -21,6 +21,7 @@ class PostsResource extends Resource
     {
         return $form
             ->schema([
+                TextInput::make('id')->required()->placeholder('Enter id'),
                 TextInput::make('post_image')->required()->placeholder('Enter image URL'),
                 TextInput::make('post_title')->required()->placeholder('Enter title'),
                 TextInput::make('post_content')->required()->placeholder('Enter description'),
